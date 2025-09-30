@@ -1,7 +1,13 @@
 #![allow(dead_code)]
 
+mod actor;
+mod actor_manager;
 mod character_creation;
+mod consts;
 mod main_menu;
+mod map_manager;
+mod playing;
+mod position;
 
 use glynnlib::*;
 
@@ -22,11 +28,13 @@ impl Application for App {
         self.state = Some(match self.state.take().unwrap() {
             AppState::MainMenu(main_menu) => main_menu.update(context),
             AppState::CharacterCreation(character_creation) => character_creation.update(context),
+            AppState::Playing(playing) => playing.update(context),
         });
 
         match &self.state.as_ref().unwrap() {
             AppState::MainMenu(main_menu) => main_menu.draw(context),
             AppState::CharacterCreation(character_creation) => character_creation.draw(context),
+            AppState::Playing(playing) => playing.draw(context),
         }
     }
 }
@@ -34,18 +42,13 @@ impl Application for App {
 enum AppState {
     MainMenu(main_menu::MainMenu),
     CharacterCreation(character_creation::CharacterCreation),
+    Playing(playing::Playing),
 }
 
 fn main() {
     let app = App::new();
     let texture_paths = vec![];
     let font_path = "assets/terminus.ttf".to_string();
-    let mut engine = Engine::new(
-        app,
-        "Dungeon".to_string(),
-        WindowSize::None,
-        texture_paths,
-        font_path,
-    );
+    let mut engine = Engine::new(app, "Dungeon".to_string(), WindowSize::None, texture_paths, font_path);
     engine.run();
 }

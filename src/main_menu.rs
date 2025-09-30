@@ -46,11 +46,7 @@ impl MainMenu {
 
         for (i, option) in MENU_OPTIONS.iter().enumerate() {
             let y = 150.0 + i as f32 * 50.0;
-            let color = if i as u8 == self.cursor {
-                YELLOW
-            } else {
-                WHITE
-            };
+            let color = if i as u8 == self.cursor { YELLOW } else { WHITE };
             context.draw_text(option.to_string(), 32.0, y, 30, color);
         }
     }
