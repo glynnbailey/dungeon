@@ -8,6 +8,7 @@ mod main_menu;
 mod map_manager;
 mod playing;
 mod position;
+mod data;
 
 use glynnlib::*;
 
@@ -48,7 +49,7 @@ enum AppState {
 fn main() {
     let app = App::new();
     let texture_paths = vec![];
-    let font_path = "assets/terminus.ttf".to_string();
+    let font_path = "assets/fonts/terminus.ttf".to_string();
     let mut engine = Engine::new(app, "Dungeon".to_string(), WindowSize::None, texture_paths, font_path);
     engine.run();
 }

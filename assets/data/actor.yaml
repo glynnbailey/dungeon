@@ -1,0 +1,9 @@
+---
+
+- type: actor
+  id: goblin
+  name: Goblin
+  glyph: g
+  color: (0, 255, 0)
+  base_health: 10
+

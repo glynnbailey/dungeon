@@ -6,3 +6,5 @@ edition = "2024"
 [dependencies]
 glynnlib = { path = "../glynnlib" }
 rand = "0.9.2"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
