@@ -1,14 +1,16 @@
-use crate::{actor::Actor, actor_manager::ActorManager, consts::GLYPH_SIZE, map_manager::MapManager, position::Position};
+use crate::{actor::Actor, actor_manager::ActorManager, consts::GLYPH_SIZE, data::GameData, map_manager::MapManager, position::Position};
 use glynnlib::*;
 
 pub struct Playing {
+    game_data: GameData,
     actors: ActorManager,
     map: MapManager,
 }
 
 impl Playing {
-    pub fn new(player_actor: Actor) -> Self {
+    pub fn new(game_data: GameData, player_actor: Actor) -> Self {
         Self {
+            game_data,
             actors: ActorManager::new(player_actor),
             map: MapManager::new(),
         }

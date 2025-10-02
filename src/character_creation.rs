@@ -1,13 +1,15 @@
-use crate::{AppState, actor::Actor, playing::Playing, position::Position};
+use crate::{actor::Actor, data::GameData, playing::Playing, position::Position, AppState};
 use glynnlib::*;
 
 pub struct CharacterCreation {
+    game_data: GameData,
     name: String,
 }
 
 impl CharacterCreation {
     pub fn new() -> Self {
-        Self { name: String::new() }
+        let game_data = crate::data::load_data("assets/data");
+        Self { game_data, name: String::new() }
     }
 
     pub fn update(mut self, context: &mut Context) -> AppState {
@@ -23,7 +25,7 @@ impl CharacterCreation {
 
         if context.is_key_pressed(KeyCode::Enter) {
             let player_actor = Actor::new(Some(self.name.clone()), Position::new(0, 0));
-            let playing_state = Playing::new(player_actor);
+            let playing_state = Playing::new(self.game_data, player_actor);
             return AppState::Playing(playing_state);
         }
 

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-pub struct Data {
+pub struct GameData {
     pub actors: Vec<ActorType>,
     pub items: Vec<ItemType>,
 }
@@ -29,7 +29,7 @@ pub struct ItemType {
     name: String,
 }
 
-pub fn load_data(path: &str) -> Data {
+pub fn load_data(path: &str) -> GameData {
     let mut actors = Vec::new();
     let mut items = Vec::new();
 
@@ -48,7 +48,7 @@ pub fn load_data(path: &str) -> Data {
         }
     }
 
-    Data {
+    GameData {
         actors,
         items,
     }
